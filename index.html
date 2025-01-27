@@ -2,214 +2,249 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ejercicio Psicológico</title>
+    <title>Ejercicio Psicológico Completo</title>
     <style>
-        /* Estilos CSS */
-        .container {
-            display: flex;
+        /* ESTILOS GENERALES */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f7fa;
+        }
+
+        .search-container {
             padding: 20px;
-            font-family: Arial, sans-serif;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .selection-panel {
-            flex: 1;
-            margin-right: 20px;
-        }
-
-        .selected-panel {
-            flex: 1;
-            background: #f8f9fa;
+        .search-box {
+            width: 100%;
             padding: 15px;
-            border-radius: 8px;
-        }
-
-        .category-group {
-            margin: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-
-        .category-header {
-            background: #f8f9fa;
-            padding: 1rem;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .trait-item {
-            padding: 0.5rem 1rem;
-            margin: 2px;
-            cursor: pointer;
+            border: 2px solid #4CAF50;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
             transition: all 0.3s;
         }
 
-        .trait-item:hover {
-            background: #e9f5ff;
-            transform: translateX(5px);
+        .search-box:focus {
+            border-color: #45a049;
+            box-shadow: 0 0 10px rgba(76,175,80,0.3);
         }
 
-        .selected-item {
-            background: #f0fff4;
-            border-left: 4px solid #4CAF50;
-            margin: 5px;
-            padding: 8px;
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* PANELES */
+        .selection-panel, .selected-panel {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* CATEGORÍAS */
+        .category-group {
+            margin-bottom: 25px;
+        }
+
+        .category-header {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+        }
+
+        .category-header:hover {
+            background: #45a049;
+        }
+
+        .trait-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 5px;
+            margin-left: 10px;
+        }
+
+        .trait-item {
+            padding: 10px;
+            margin: 3px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #eee;
+        }
+
+        .trait-item:hover {
+            background: #e3f2fd;
+            transform: translateX(5px);
+        }
+
+        /* ELEMENTOS SELECCIONADOS */
+        .selected-item {
+            background: #f0fff4;
+            padding: 12px;
+            margin: 8px 0;
+            border-left: 4px solid #4CAF50;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .btn-eliminar {
-            border: none;
             background: none;
+            border: none;
             color: #ff4444;
             cursor: pointer;
-            font-size: 1.2em;
+            font-weight: bold;
+            padding: 5px;
         }
 
+        /* ESTADOS */
         .hidden {
             display: none;
+        }
+
+        .highlight {
+            background: #fff3cd !important;
+            border-color: #ffd700 !important;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .selection-panel, .selected-panel {
+                max-height: 50vh;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar rasgos (ej: creatividad, manipulación...)">
+    </div>
+
     <div class="container">
-        <!-- Columna de Selección -->
+        <!-- Panel de Selección -->
         <div class="selection-panel">
             <h2>Virtudes</h2>
             <div class="category-group" id="virtudes"></div>
             <h2>Defectos</h2>
             <div class="category-group" id="defectos"></div>
         </div>
-        
-        <!-- Columna de Seleccionados -->
+
+        <!-- Panel de Seleccionados -->
         <div class="selected-panel">
-            <h3>Tus Elecciones</h3>
+            <h3>Tus Rasgos Seleccionados</h3>
             <div id="selected-items"></div>
         </div>
     </div>
 
     <script>
-        // Datos y lógica de la aplicación
+        // DATOS COMPLETOS
         const categorias = {
-  Virtudes: {
-    // Dominio Cognitivo
-    "Intelectuales": {
-      "Pensamiento Crítico": ["Análisis objetivo", "Escepticismo saludable", "Evaluación de fuentes"],
-      "Creatividad": ["Pensamiento divergente", "Originalidad", "Solución innovadora de problemas"],
-      "Aprendizaje": ["Curiosidad epistemológica", "Velocidad de asimilación", "Síntesis conceptual"]
-    },
-    
-    // Dominio Emocional
-    "Regulación Emocional": ["Ecuanimidad en crisis", "Tolerancia a la frustración", "Modulación afectiva"],
-    "Autoconocimiento": ["Conciencia de sesgos", "Reconocimiento de triggers", "Mapa emocional preciso"],
-    
-    // Dominio Social
-    "Habilidades Interpersonales": [
-      "Diplomacia asertiva", 
-      "Inteligencia contextual social",
-      "Regulación de dinámicas grupales"
-    ],
-    
-    // Dominio Moral
-    "Integridad": ["Coherencia valor-acción", "Autenticidad radical", "Honestidad ontológica"],
-    
-    // Dominio Existencial
-    "Sentido Vital": ["Propósito trascendente", "Arraigo existencial", "Legado consciente"]
-  },
-
-  Defectos: {
-    // Cognitivos
-    "Sesgos Cognitivos": {
-      "Autoengaño": ["Negación patológica", "Racionalización tóxica", "Proyección masiva"],
-      "Pensamiento Mágico": ["Superstición crónica", "Pensamiento desiderativo", "Causalidad ilusoria"]
-    },
-    
-    // Emocionales
-    "Desregulación Afectiva": {
-      "Inestabilidad": ["Labilidad emocional", "Reactividad desproporcionada", "Ciclotimia rápida"],
-      "Anestesia Emocional": ["Alexitimia", "Desconexión afectiva", "Frialdad crónica"]
-    },
-    
-    // Sociales
-    "Patrones Relacionales Tóxicos": {
-      "Manipulación": ["Gaslighting", "Victimismo crónico", "Triangulación"],
-      "Aislamiento": ["Fobia social", "Autosabotaje relacional", "Misantropía activa"]
-    },
-    
-    // Morales
-    "Corrupción Ética": {
-      "Maquiavelismo": ["Utilitarismo perverso", "Instrumentalización humana", "Deshumanización"],
-      "Hipocresía": ["Disonancia moral", "Doble estándar sistémico", "Moralina"]
-    },
-    
-    // Existenciales
-    "Vacío Existencial": {
-      "Desesperanza": ["Nihilismo paralizante", "Anomia crónica", "Desarraigo existencial"],
-      "Futilidad": ["Síndrome de Sisifo", "Indefensión aprendida", "Desgano ontológico"]
-    }
-  }
-};
+            Virtudes: {
+                "Intelectuales": {
+                    "Pensamiento Crítico": ["Análisis objetivo", "Escepticismo saludable", "Evaluación de fuentes"],
+                    "Creatividad": ["Pensamiento divergente", "Originalidad", "Solución innovadora"],
+                    "Aprendizaje": ["Curiosidad epistemológica", "Asimilación rápida", "Síntesis conceptual"]
+                },
+                "Emocionales": {
+                    "Regulación": ["Ecuanimidad", "Tolerancia a la frustración", "Modulación afectiva"],
+                    "Autoconocimiento": ["Conciencia de sesgos", "Reconocimiento de triggers", "Mapa emocional"]
+                },
+                "Sociales": {
+                    "Habilidades": ["Diplomacia asertiva", "Inteligencia social", "Gestión de conflictos"],
+                    "Empatía": ["Comprensión contextual", "Escucha activa", "Perspectiva múltiple"]
+                }
+            },
+            Defectos: {
+                "Cognitivos": {
+                    "Sesgos": ["Pensamiento dicotómico", "Generalización excesiva", "Razonamiento emocional"],
+                    "Rigidez": ["Dogmatismo", "Resistencia al cambio", "Mente cerrada"]
+                },
+                "Emocionales": {
+                    "Desregulación": ["Impulsividad", "Labilidad emocional", "Anestesia afectiva"],
+                    "Negatividad": ["Cinismo crónico", "Catastrofismo", "Victimismo"]
+                },
+                "Sociales": {
+                    "Relaciones Tóxicas": ["Manipulación", "Pasivo-agresividad", "Triangulación"],
+                    "Aislamiento": ["Misantropía", "Fobia social", "Autosabotaje relacional"]
+                }
+            }
+        };
 
         let seleccionados = new Set();
 
+        // FUNCIONALIDAD PRINCIPAL
         function crearSelector() {
             Object.entries(categorias).forEach(([tipo, grupos]) => {
                 const contenedor = document.getElementById(tipo.toLowerCase());
                 
-                Object.entries(grupos).forEach(([categoria, rasgos]) => {
-                    const divCategoria = document.createElement('div');
-                    divCategoria.className = 'category';
+                Object.entries(grupos).forEach(([categoria, subgrupos]) => {
+                    const categoriaDiv = document.createElement('div');
                     
                     // Encabezado de categoría
                     const header = document.createElement('div');
                     header.className = 'category-header';
-                    header.textContent = categoria;
-                    header.onclick = () => {
-                        divRasgos.classList.toggle('hidden');
-                        header.querySelector('.toggle-icon').textContent = 
-                            divRasgos.classList.contains('hidden') ? '▶' : '▼';
-                    };
-                    
-                    // Icono de toggle
-                    const toggleIcon = document.createElement('span');
-                    toggleIcon.className = 'toggle-icon';
-                    toggleIcon.textContent = '▶';
-                    header.appendChild(toggleIcon);
+                    header.innerHTML = `
+                        ${categoria}
+                        <span class="toggle-icon">▼</span>
+                    `;
                     
                     // Lista de rasgos
-                    const divRasgos = document.createElement('div');
-                    divRasgos.className = 'hidden';
-                    rasgos.forEach(rasgo => {
-                        const item = document.createElement('div');
-                        item.className = 'trait-item';
-                        item.textContent = rasgo;
-                        item.onclick = () => toggleSeleccion(rasgo, tipo);
-                        divRasgos.appendChild(item);
-                    });
+                    const lista = document.createElement('div');
+                    lista.className = 'trait-list';
                     
-                    divCategoria.appendChild(header);
-                    divCategoria.appendChild(divRasgos);
-                    contenedor.appendChild(divCategoria);
+                    Object.entries(subgrupos).forEach(([subcategoria, rasgos]) => {
+                        rasgos.forEach(rasgo => {
+                            const item = document.createElement('div');
+                            item.className = 'trait-item';
+                            item.textContent = rasgo;
+                            item.onclick = () => toggleSeleccion(rasgo, tipo);
+                            lista.appendChild(item);
+                        });
+                    });
+
+                    header.onclick = () => lista.classList.toggle('hidden');
+                    categoriaDiv.appendChild(header);
+                    categoriaDiv.appendChild(lista);
+                    contenedor.appendChild(categoriaDiv);
                 });
             });
         }
 
         function toggleSeleccion(rasgo, tipo) {
-            const itemId = `${tipo}-${rasgo}`;
-            
-            if(seleccionados.has(itemId)) {
-                seleccionados.delete(itemId);
-            } else {
-                seleccionados.add(itemId);
-            }
-            
-            actualizarPanelSeleccionados();
+            const id = `${tipo}-${rasgo}`;
+            seleccionados.has(id) ? seleccionados.delete(id) : seleccionados.add(id);
+            actualizarSeleccionados();
         }
 
-        function actualizarPanelSeleccionados() {
+        function actualizarSeleccionados() {
             const contenedor = document.getElementById('selected-items');
             contenedor.innerHTML = '';
             
@@ -218,19 +253,33 @@
                 const div = document.createElement('div');
                 div.className = 'selected-item';
                 div.innerHTML = `
-                    ${rasgo} 
-                    <small>(${tipo})</small>
-                    <button class="btn-eliminar">×</button>
+                    <div>
+                        <strong>${rasgo}</strong>
+                        <small>(${tipo})</small>
+                    </div>
+                    <button class="btn-eliminar" title="Eliminar">×</button>
                 `;
                 div.querySelector('button').onclick = () => {
                     seleccionados.delete(id);
-                    actualizarPanelSeleccionados();
+                    actualizarSeleccionados();
                 };
                 contenedor.appendChild(div);
             });
         }
 
-        // Inicializar al cargar la página
+        // BÚSQUEDA
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const termino = e.target.value.toLowerCase();
+            
+            document.querySelectorAll('.trait-item').forEach(item => {
+                const texto = item.textContent.toLowerCase();
+                const coincide = texto.includes(termino);
+                item.style.display = coincide ? 'block' : 'none';
+                item.classList.toggle('highlight', coincide && termino.length > 0);
+            });
+        });
+
+        // INICIALIZACIÓN
         window.onload = crearSelector;
     </script>
 </body>
