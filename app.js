@@ -78,7 +78,7 @@ class TraitSelector {
         this.selectedTraits.forEach(id => {
             const [type, trait] = id.split('-');
             const div = document.createElement('div');
-            div.className = 'selected-item';
+            div.className = `selected-item ${type === 'defectos' ? 'defecto' : ''}`; // Agregar clase según el tipo
             div.innerHTML = `
                 <span>${trait} <small>(${type})</small></span>
                 <button onclick="selector.removeTrait('${id}')">✕</button>
@@ -86,7 +86,7 @@ class TraitSelector {
             container.appendChild(div);
         });
     }
-
+    
     removeTrait(id) {
         this.selectedTraits.delete(id);
         this.updateSelected();
