@@ -1,19 +1,109 @@
 {
     "virtudes": {
-      "Intelectuales": {
-        "Pensamiento Crítico": ["Análisis objetivo", "Escepticismo saludable", "Evaluación de fuentes"],
-        "Creatividad": ["Pensamiento divergente", "Originalidad", "Solución innovadora"]
-      },
-      "Emocionales": {
-        "Autoconciencia": ["Reconocimiento de triggers", "Mapa emocional", "Monitorización somática"]
-      }
+      "Emocionales": [
+        "Empatía profunda", 
+        "Regulación emocional en crisis",
+        "Capacidad de perdonar",
+        "Alegría auténtica",
+        "Tolerancia a la frustración",
+        "Expresión afectiva clara",
+        "Resiliencia ante el dolor",
+        "Gratitud constante",
+        "Autoconciencia de patrones",
+        "Paciencia activa"
+      ],
+      
+      "Sociales": [
+        "Escucha sin juzgar",
+        "Asertividad respetuosa",
+        "Colaboración genuina",
+        "Liderazgo inspirador",
+        "Diplomacia en conflictos",
+        "Generosidad desinteresada",
+        "Apoyo emocional",
+        "Honestidad compasiva",
+        "Respeto por diferencias",
+        "Comunicación clara"
+      ],
+      
+      "Intelectuales": [
+        "Curiosidad constante",
+        "Pensamiento crítico",
+        "Creatividad práctica",
+        "Aprendizaje continuo",
+        "Análisis objetivo",
+        "Sabiduría aplicada",
+        "Memoria selectiva",
+        "Adaptabilidad mental",
+        "Solución innovadora",
+        "Autocrítica constructiva"
+      ],
+      
+      "Espirituales": [
+        "Sentido de propósito",
+        "Conexión con la naturaleza",
+        "Paz interior",
+        "Aceptación radical",
+        "Fe en el proceso",
+        "Práctica contemplativa",
+        "Gratitud existencial",
+        "Compasión universal",
+        "Arraigo en el presente",
+        "Trascendencia del ego"
+      ]
     },
+  
     "defectos": {
-      "Cognitivos": {
-        "Sesgos": ["Pensamiento dicotómico", "Sobregeneralización", "Razonamiento emocional"]
-      },
-      "Sociales": {
-        "Comunicación": ["Pasivo-agresividad", "Gaslighting", "Triangulación"]
-      }
+      "Emocionales": [
+        "Impulsividad reactiva",
+        "Culpa crónica",
+        "Miedo al abandono",
+        "Ansiedad paralizante",
+        "Resentimiento acumulado",
+        "Frialdad emocional",
+        "Dependencia afectiva",
+        "Negación de sentimientos",
+        "Autoexigencia destructiva",
+        "Desesperanza aprendida"
+      ],
+      
+      "Sociales": [
+        "Manipulación sutil",
+        "Chisme destructivo",
+        "Aislamiento autoimpuesto",
+        "Competitividad tóxica",
+        "Pasivo-agresividad",
+        "Necesidad de control",
+        "Juicio constante",
+        "Victimismo crónico",
+        "Dificultad para confiar",
+        "Egoísmo inconsciente"
+      ],
+      
+      "Intelectuales": [
+        "Pensamiento rígido",
+        "Negación de evidencias",
+        "Sobregeneralización",
+        "Análisis paralizante",
+        "Memoria selectiva negativa",
+        "Falta de curiosidad",
+        "Dogmatismo ideológico",
+        "Autoengaño sistemático",
+        "Pérdida de perspectiva",
+        "Resistencia al cambio"
+      ],
+      
+      "Existenciales": [
+        "Vacío constante",
+        "Desconexión del cuerpo",
+        "Falta de propósito",
+        "Miedo a la muerte",
+        "Comparación obsesiva",
+        "Desarraigo cultural",
+        "Negación del tiempo",
+        "Fuga en fantasías",
+        "Negatividad crónica",
+        "Desprecio por lo simple"
+      ]
     }
   }
