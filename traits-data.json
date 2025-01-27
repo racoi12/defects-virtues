@@ -1,109 +1,55 @@
 {
     "virtudes": {
-      "Emocionales": [
-        "Empatía profunda", 
-        "Regulación emocional en crisis",
-        "Capacidad de perdonar",
-        "Alegría auténtica",
-        "Tolerancia a la frustración",
-        "Expresión afectiva clara",
-        "Resiliencia ante el dolor",
-        "Gratitud constante",
-        "Autoconciencia de patrones",
-        "Paciencia activa"
-      ],
-      
-      "Sociales": [
-        "Escucha sin juzgar",
-        "Asertividad respetuosa",
-        "Colaboración genuina",
-        "Liderazgo inspirador",
-        "Diplomacia en conflictos",
-        "Generosidad desinteresada",
-        "Apoyo emocional",
-        "Honestidad compasiva",
-        "Respeto por diferencias",
-        "Comunicación clara"
-      ],
-      
-      "Intelectuales": [
-        "Curiosidad constante",
-        "Pensamiento crítico",
-        "Creatividad práctica",
-        "Aprendizaje continuo",
-        "Análisis objetivo",
-        "Sabiduría aplicada",
-        "Memoria selectiva",
-        "Adaptabilidad mental",
-        "Solución innovadora",
-        "Autocrítica constructiva"
-      ],
-      
-      "Espirituales": [
-        "Sentido de propósito",
-        "Conexión con la naturaleza",
-        "Paz interior",
-        "Aceptación radical",
-        "Fe en el proceso",
-        "Práctica contemplativa",
-        "Gratitud existencial",
-        "Compasión universal",
-        "Arraigo en el presente",
-        "Trascendencia del ego"
-      ]
+        "Emocionales": {
+            "Empatía": ["Empatía profunda", "Expresión afectiva clara"],
+            "Regulación Emocional": ["Regulación emocional en crisis", "Paciencia activa"],
+            "Resiliencia": ["Resiliencia ante el dolor", "Tolerancia a la frustración"],
+            "Gratitud": ["Gratitud constante", "Alegría auténtica"],
+            "Autoconciencia": ["Autoconciencia de patrones"]
+        },
+        "Sociales": {
+            "Comunicación": ["Escucha sin juzgar", "Comunicación clara", "Asertividad respetuosa"],
+            "Colaboración": ["Colaboración genuina", "Apoyo emocional", "Diplomacia en conflictos"],
+            "Liderazgo": ["Liderazgo inspirador", "Generosidad desinteresada", "Honestidad compasiva"],
+            "Respeto": ["Respeto por diferencias"]
+        },
+        "Intelectuales": {
+            "Curiosidad": ["Curiosidad constante", "Aprendizaje continuo"],
+            "Pensamiento Crítico": ["Análisis objetivo", "Solución innovadora", "Autocrítica constructiva"],
+            "Creatividad": ["Creatividad práctica", "Sabiduría aplicada"],
+            "Adaptabilidad": ["Adaptabilidad mental", "Memoria selectiva"]
+        },
+        "Espirituales": {
+            "Propósito": ["Sentido de propósito", "Fe en el proceso"],
+            "Conexión": ["Conexión con la naturaleza", "Arraigo en el presente"],
+            "Compasión": ["Compasión universal", "Aceptación radical"],
+            "Trascendencia": ["Trascendencia del ego", "Gratitud existencial"]
+        }
     },
-  
     "defectos": {
-      "Emocionales": [
-        "Impulsividad reactiva",
-        "Culpa crónica",
-        "Miedo al abandono",
-        "Ansiedad paralizante",
-        "Resentimiento acumulado",
-        "Frialdad emocional",
-        "Dependencia afectiva",
-        "Negación de sentimientos",
-        "Autoexigencia destructiva",
-        "Desesperanza aprendida"
-      ],
-      
-      "Sociales": [
-        "Manipulación sutil",
-        "Chisme destructivo",
-        "Aislamiento autoimpuesto",
-        "Competitividad tóxica",
-        "Pasivo-agresividad",
-        "Necesidad de control",
-        "Juicio constante",
-        "Victimismo crónico",
-        "Dificultad para confiar",
-        "Egoísmo inconsciente"
-      ],
-      
-      "Intelectuales": [
-        "Pensamiento rígido",
-        "Negación de evidencias",
-        "Sobregeneralización",
-        "Análisis paralizante",
-        "Memoria selectiva negativa",
-        "Falta de curiosidad",
-        "Dogmatismo ideológico",
-        "Autoengaño sistemático",
-        "Pérdida de perspectiva",
-        "Resistencia al cambio"
-      ],
-      
-      "Existenciales": [
-        "Vacío constante",
-        "Desconexión del cuerpo",
-        "Falta de propósito",
-        "Miedo a la muerte",
-        "Comparación obsesiva",
-        "Desarraigo cultural",
-        "Negación del tiempo",
-        "Fuga en fantasías",
-        "Negatividad crónica",
-        "Desprecio por lo simple"
-      ]
+        "Emocionales": {
+            "Impulsividad": ["Impulsividad reactiva", "Ansiedad paralizante"],
+            "Negación": ["Negación de sentimientos", "Frialdad emocional"],
+            "Dependencia": ["Dependencia afectiva", "Miedo al abandono"],
+            "Autoexigencia": ["Autoexigencia destructiva", "Culpa crónica"]
+        },
+        "Sociales": {
+            "Manipulación": ["Manipulación sutil", "Pasivo-agresividad"],
+            "Competitividad": ["Competitividad tóxica", "Victimismo crónico"],
+            "Aislamiento": ["Aislamiento autoimpuesto", "Dificultad para confiar"],
+            "Juicio": ["Juicio constante", "Egoísmo inconsciente"]
+        },
+        "Intelectuales": {
+            "Rigidez": ["Pensamiento rígido", "Resistencia al cambio"],
+            "Distorsiones": ["Sobregeneralización", "Negación de evidencias"],
+            "Falta de Curiosidad": ["Falta de curiosidad", "Dogmatismo ideológico"],
+            "Pérdida de Perspectiva": ["Pérdida de perspectiva", "Autoengaño sistemático"]
+        },
+        "Existenciales": {
+            "Vacío": ["Vacío constante", "Falta de propósito"],
+            "Desconexión": ["Desconexión del cuerpo", "Desarraigo cultural"],
+            "Miedo": ["Miedo a la muerte", "Negación del tiempo"],
+            "Negatividad": ["Negatividad crónica", "Desprecio por lo simple"]
+        }
     }
-  }
+}
