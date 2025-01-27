@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio Psicológico</title>
+    <style>
+        /* Estilos CSS */
+        .container {
+            display: flex;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .selection-panel {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .selected-panel {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .category-group {
+            margin: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .category-header {
+            background: #f8f9fa;
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .trait-item {
+            padding: 0.5rem 1rem;
+            margin: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .trait-item:hover {
+            background: #e9f5ff;
+            transform: translateX(5px);
+        }
+
+        .selected-item {
+            background: #f0fff4;
+            border-left: 4px solid #4CAF50;
+            margin: 5px;
+            padding: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-eliminar {
+            border: none;
+            background: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Columna de Selección -->
+        <div class="selection-panel">
+            <h2>Virtudes</h2>
+            <div class="category-group" id="virtudes"></div>
+            <h2>Defectos</h2>
+            <div class="category-group" id="defectos"></div>
+        </div>
+        
+        <!-- Columna de Seleccionados -->
+        <div class="selected-panel">
+            <h3>Tus Elecciones</h3>
+            <div id="selected-items"></div>
+        </div>
+    </div>
+
+    <script>
+        // Datos y lógica de la aplicación
+        const categorias = {
+            Virtudes: {
+                "Inteligencia Emocional": ["Autoconciencia", "Regulación emocional", "Empatía"],
+                "Relaciones Sociales": ["Asertividad", "Escucha activa", "Cooperación"],
+                "Crecimiento Personal": ["Resiliencia", "Curiosidad", "Autodisciplina"]
+            },
+            Defectos: {
+                "Pensamiento Disfuncional": ["Catastrofismo", "Polarización", "Sobregeneralización"],
+                "Gestión Emocional": ["Impulsividad", "Pasividad agresiva", "Evitación"],
+                "Patrones Sociales": ["Dependencia emocional", "Manipulación", "Aislamiento"]
+            }
+        };
+
+        let seleccionados = new Set();
+
+        function crearSelector() {
+            Object.entries(categorias).forEach(([tipo, grupos]) => {
+                const contenedor = document.getElementById(tipo.toLowerCase());
+                
+                Object.entries(grupos).forEach(([categoria, rasgos]) => {
+                    const divCategoria = document.createElement('div');
+                    divCategoria.className = 'category';
+                    
+                    // Encabezado de categoría
+                    const header = document.createElement('div');
+                    header.className = 'category-header';
+                    header.textContent = categoria;
+                    header.onclick = () => {
+                        divRasgos.classList.toggle('hidden');
+                        header.querySelector('.toggle-icon').textContent = 
+                            divRasgos.classList.contains('hidden') ? '▶' : '▼';
+                    };
+                    
+                    // Icono de toggle
+                    const toggleIcon = document.createElement('span');
+                    toggleIcon.className = 'toggle-icon';
+                    toggleIcon.textContent = '▶';
+                    header.appendChild(toggleIcon);
+                    
+                    // Lista de rasgos
+                    const divRasgos = document.createElement('div');
+                    divRasgos.className = 'hidden';
+                    rasgos.forEach(rasgo => {
+                        const item = document.createElement('div');
+                        item.className = 'trait-item';
+                        item.textContent = rasgo;
+                        item.onclick = () => toggleSeleccion(rasgo, tipo);
+                        divRasgos.appendChild(item);
+                    });
+                    
+                    divCategoria.appendChild(header);
+                    divCategoria.appendChild(divRasgos);
+                    contenedor.appendChild(divCategoria);
+                });
+            });
+        }
+
+        function toggleSeleccion(rasgo, tipo) {
+            const itemId = `${tipo}-${rasgo}`;
+            
+            if(seleccionados.has(itemId)) {
+                seleccionados.delete(itemId);
+            } else {
+                seleccionados.add(itemId);
+            }
+            
+            actualizarPanelSeleccionados();
+        }
+
+        function actualizarPanelSeleccionados() {
+            const contenedor = document.getElementById('selected-items');
+            contenedor.innerHTML = '';
+            
+            seleccionados.forEach(id => {
+                const [tipo, rasgo] = id.split('-');
+                const div = document.createElement('div');
+                div.className = 'selected-item';
+                div.innerHTML = `
+                    ${rasgo} 
+                    <small>(${tipo})</small>
+                    <button class="btn-eliminar">×</button>
+                `;
+                div.querySelector('button').onclick = () => {
+                    seleccionados.delete(id);
+                    actualizarPanelSeleccionados();
+                };
+                contenedor.appendChild(div);
+            });
+        }
+
+        // Inicializar al cargar la página
+        window.onload = crearSelector;
+    </script>
+</body>
+</html>
