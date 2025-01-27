@@ -1,0 +1,19 @@
+{
+    "virtudes": {
+      "Intelectuales": {
+        "Pensamiento Crítico": ["Análisis objetivo", "Escepticismo saludable", "Evaluación de fuentes"],
+        "Creatividad": ["Pensamiento divergente", "Originalidad", "Solución innovadora"]
+      },
+      "Emocionales": {
+        "Autoconciencia": ["Reconocimiento de triggers", "Mapa emocional", "Monitorización somática"]
+      }
+    },
+    "defectos": {
+      "Cognitivos": {
+        "Sesgos": ["Pensamiento dicotómico", "Sobregeneralización", "Razonamiento emocional"]
+      },
+      "Sociales": {
+        "Comunicación": ["Pasivo-agresividad", "Gaslighting", "Triangulación"]
+      }
+    }
+  }
