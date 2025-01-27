@@ -94,17 +94,64 @@
     <script>
         // Datos y lógica de la aplicación
         const categorias = {
-            Virtudes: {
-                "Inteligencia Emocional": ["Autoconciencia", "Regulación emocional", "Empatía"],
-                "Relaciones Sociales": ["Asertividad", "Escucha activa", "Cooperación"],
-                "Crecimiento Personal": ["Resiliencia", "Curiosidad", "Autodisciplina"]
-            },
-            Defectos: {
-                "Pensamiento Disfuncional": ["Catastrofismo", "Polarización", "Sobregeneralización"],
-                "Gestión Emocional": ["Impulsividad", "Pasividad agresiva", "Evitación"],
-                "Patrones Sociales": ["Dependencia emocional", "Manipulación", "Aislamiento"]
-            }
-        };
+  Virtudes: {
+    // Dominio Cognitivo
+    "Intelectuales": {
+      "Pensamiento Crítico": ["Análisis objetivo", "Escepticismo saludable", "Evaluación de fuentes"],
+      "Creatividad": ["Pensamiento divergente", "Originalidad", "Solución innovadora de problemas"],
+      "Aprendizaje": ["Curiosidad epistemológica", "Velocidad de asimilación", "Síntesis conceptual"]
+    },
+    
+    // Dominio Emocional
+    "Regulación Emocional": ["Ecuanimidad en crisis", "Tolerancia a la frustración", "Modulación afectiva"],
+    "Autoconocimiento": ["Conciencia de sesgos", "Reconocimiento de triggers", "Mapa emocional preciso"],
+    
+    // Dominio Social
+    "Habilidades Interpersonales": [
+      "Diplomacia asertiva", 
+      "Inteligencia contextual social",
+      "Regulación de dinámicas grupales"
+    ],
+    
+    // Dominio Moral
+    "Integridad": ["Coherencia valor-acción", "Autenticidad radical", "Honestidad ontológica"],
+    
+    // Dominio Existencial
+    "Sentido Vital": ["Propósito trascendente", "Arraigo existencial", "Legado consciente"]
+  },
+
+  Defectos: {
+    // Cognitivos
+    "Sesgos Cognitivos": {
+      "Autoengaño": ["Negación patológica", "Racionalización tóxica", "Proyección masiva"],
+      "Pensamiento Mágico": ["Superstición crónica", "Pensamiento desiderativo", "Causalidad ilusoria"]
+    },
+    
+    // Emocionales
+    "Desregulación Afectiva": {
+      "Inestabilidad": ["Labilidad emocional", "Reactividad desproporcionada", "Ciclotimia rápida"],
+      "Anestesia Emocional": ["Alexitimia", "Desconexión afectiva", "Frialdad crónica"]
+    },
+    
+    // Sociales
+    "Patrones Relacionales Tóxicos": {
+      "Manipulación": ["Gaslighting", "Victimismo crónico", "Triangulación"],
+      "Aislamiento": ["Fobia social", "Autosabotaje relacional", "Misantropía activa"]
+    },
+    
+    // Morales
+    "Corrupción Ética": {
+      "Maquiavelismo": ["Utilitarismo perverso", "Instrumentalización humana", "Deshumanización"],
+      "Hipocresía": ["Disonancia moral", "Doble estándar sistémico", "Moralina"]
+    },
+    
+    // Existenciales
+    "Vacío Existencial": {
+      "Desesperanza": ["Nihilismo paralizante", "Anomia crónica", "Desarraigo existencial"],
+      "Futilidad": ["Síndrome de Sisifo", "Indefensión aprendida", "Desgano ontológico"]
+    }
+  }
+};
 
         let seleccionados = new Set();
 
